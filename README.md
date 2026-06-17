@@ -6,11 +6,11 @@
 
 | Question                                | Answer                                                                                                                                                                       |
 | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **What is this project?**               | My CariSurg MedTech Pathways portfolio documenting my Week 0 clinical triage data work and Week 1 proposal on AI-assisted emergency department risk stratification.           |
+| **What is this project?**               | My CariSurg MedTech Pathways portfolio documenting clinical AI, emergency department triage data work, proposal development and project documentation.                       |
 | **Who is it for?**                      | CariSurg tutors, clinical reviewers and members of the Clinical AI & Innovation Unit who need to quickly review my work.                                                     |
 | **How do I install and run it?**        | Clone the repository, install the requirements and open the notebooks in Jupyter Lab or Google Colab. See the Installation and Usage sections below for copy-paste commands. |
 | **Where does the data come from?**      | The work uses programme-provided emergency department triage data. Sensitive or programme-controlled datasets are not uploaded unless permission is given.                   |
-| **Who built it and how can I connect?** | Built by Shari Oliver for the CariSurg MedTech Pathways Programme. LinkedIn: [Shari Oliver](https://www.linkedin.com/in/shari-oliver-87906b1ba/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BvltapfaURjWgWxiRp1JK%2Bg%3D%3D).                                                   |
+| **Who built it and how can I connect?** | Built by Shari Oliver for the CariSurg MedTech Pathways Programme. LinkedIn: [Shari Oliver](https://www.linkedin.com/in/shari-oliver-87906b1ba/).                            |
 
 ---
 
@@ -21,8 +21,9 @@ The purpose of this repository is to keep my CariSurg programme work organised, 
 It includes:
 
 * Week 0 Jupyter notebooks on emergency department triage data cleaning, validation and visualisation
-* Week 0 reports and written reflections
-* Week 1 proposal documents on AI-assisted early risk stratification in emergency department triage
+* Week 0 reports and written submissions
+* Week 1 interim and final preliminary proposal documents
+* Week 2 updated proposal deliverable with Zotero-generated citations and bibliography
 * Supporting documentation for project setup and review
 
 The main clinical focus is the use of routinely collected triage data to support safer and earlier identification of high-risk emergency department patients.
@@ -43,13 +44,21 @@ carisurg-portfolio/
 │   └── README.md
 │
 ├── docs/
-│   └── Week 0 reports and Week 1 proposal documents
+│   ├── README.md
+│   ├── week-0/
+│   │   └── Week 0 reports, written submissions and supporting documents
+│   ├── week-1/
+│   │   └── Week 1 interim and final preliminary proposal documents
+│   └── week-2/
+│       └── Week 2 updated proposal deliverable
 │
 ├── notebooks/
-│   └── Week 0 Jupyter notebooks
+│   ├── README.md
+│   └── week-0/
+│       └── Week 0 Jupyter notebooks
 │
 └── src/
-    └── Future reusable scripts or functions
+    └── README.md
 ```
 
 ---
@@ -73,27 +82,37 @@ For Windows PowerShell, use:
 pip install -r requirements.txt
 ```
 
-If you are using Google Colab, you can upload the notebook directly from the `notebooks/` folder and run the cells there.
+If you are using Google Colab, you can upload the notebook directly from the `notebooks/week-0/` folder and run the cells there.
 
 ---
 
 ## Usage
 
-Open the Week 0 notebooks from the `notebooks/` folder.
+Open the Week 0 notebooks from the `notebooks/week-0/` folder.
 
 ```bash
-jupyter lab notebooks/
+jupyter lab notebooks/week-0/
 ```
 
-Recommended review order:
+Recommended notebook review order:
 
-1. `S_Oliver_Week0_Day1_Gender_Cleaning.ipynb`
-2. `S_Oliver_Week0_Day1_Gender_Cleaning_Updated.ipynb`
-3. `S_Oliver_Week0_Tutorial2_Advanced_Cleaning.ipynb`
-4. `S_Oliver_Week0_Tutorial3_Visualisation.ipynb`
-5. `S_Oliver_Week0_Final_Tasks2_4_ipynb.ipynb`
+1. `SOliver_Week0_Day1_Gender_Cleaning.ipynb`
+2. `SOliver_Week0_Day1_Gender_Cleaning_Updated.ipynb`
+3. `SOliver_Week0_Tutorial2_Advanced_Cleaning.ipynb`
+4. `SOliver_Week0_Tutorial3_Visualisation.ipynb`
+5. `SOliver_Week0_Final_Tasks2_4.ipynb`
 
-Supporting reports and written submissions are stored in the `docs/` folder.
+Supporting reports, written submissions and proposal documents are stored in the `docs/` folder and organised by programme week.
+
+---
+
+## Documentation Guide
+
+The `docs/` folder is organised into weekly subfolders:
+
+* `docs/week-0/` contains Week 0 reports and supporting documents related to clinical triage data cleaning, MAP validation, visualisation, vital sign review, time management and digital ED triage model design.
+* `docs/week-1/` contains the Week 1 interim submission and final preliminary proposal.
+* `docs/week-2/` contains the Week 2 updated proposal deliverable with Zotero-generated citations and bibliography.
 
 ---
 
@@ -113,8 +132,16 @@ This repository currently includes:
 * Gender column cleaning report
 * MAP cleaning report with clinical justifications
 * Matplotlib visualisation report
+* Vital sign review document
 * Digital ED triage model pseudocode document
-* Week 1 proposal documents related to AI-assisted ED risk stratification
+* Week 1 interim and final preliminary proposal documents
+* Week 2 updated proposal deliverable with Zotero-generated citations and bibliography
+
+---
+
+## Reference Management
+
+The Week 2 updated proposal uses Zotero-generated citations and bibliography. The reference library was organised to support citation hygiene, reproducibility and clear tracking of the peer-reviewed sources used in the proposal.
 
 ---
 
@@ -124,7 +151,7 @@ This repository is primarily maintained by **Shari Oliver** as part of the CariS
 
 CariSurg tutors, mentors and reviewers may provide feedback through GitHub issues, pull request comments or programme communication channels.
 
-Before merging any changes into my repository:
+Before merging any changes into this repository:
 
 1. File paths are reviewed.
 2. Notebooks and documents are checked to ensure that they open correctly.
@@ -153,4 +180,4 @@ This repository is licensed under the MIT License. See the `LICENSE` file for de
 CariSurg MedTech Pathways Scholar
 Aspiring Medical Physicist | Healthcare AI & Clinical Innovation
 
-**LinkedIn:** [Shari Oliver](https://www.linkedin.com/in/shari-oliver-87906b1ba/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BvltapfaURjWgWxiRp1JK%2Bg%3D%3D)
+**LinkedIn:** [Shari Oliver](https://www.linkedin.com/in/shari-oliver-87906b1ba/)
