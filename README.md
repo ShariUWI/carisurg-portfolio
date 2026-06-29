@@ -21,17 +21,12 @@ The purpose of this repository is to keep my CariSurg programme work organised, 
 It includes:
 
 * Week 0 Jupyter notebooks on emergency department triage data cleaning, validation and visualisation
-<<<<<<< HEAD
-* Week 0 reports and written submissions
-* Week 1 interim and final preliminary proposal documents
-* Week 2 updated proposal deliverable with Zotero-generated citations and bibliography
-=======
+
 * Week 0 reports and written reflections
 * Week 1 proposal documents on AI-assisted early risk stratification in emergency department triage
 * Week 2 updated proposal deliverable with Zotero-generated citations and bibliography
 * Week 3 workflow mapping, systems thinking and refined proposal documentation
 * Week 4 ethics, safety, risk register and AI-harm case study documentation
->>>>>>> 34d9051 (Updated README)
 * Supporting documentation for project setup and review
 
 The main clinical focus is the use of routinely collected triage data to support safer and earlier identification of high-risk emergency department patients. As the portfolio develops, the project also considers workflow fit, stakeholder needs, ethical risks, equity, accountability and safe implementation of AI-assisted triage support.
@@ -58,17 +53,12 @@ carisurg-portfolio/
 │   │   └── Week 0 reports, written submissions and supporting documents
 │   ├── week-1/
 │   │   └── Week 1 interim and final preliminary proposal documents
-<<<<<<< HEAD
-│   └── week-2/
-│       └── Week 2 updated proposal deliverable
-=======
 │   ├── week-2/
 │   │   └── Week 2 updated proposal deliverable
 │   ├── week-3/
 │   │   └── Week 3 workflow mapping, systems thinking and refined proposal documents
 │   └── week-4/
 │       └── Week 4 interim and final proposals containing ethics, safety, risk register and AI harm case study
->>>>>>> 34d9051 (Updated README)
 │
 ├── notebooks/
 │   ├── README.md
@@ -118,29 +108,20 @@ Recommended notebook review order:
 4. `SOliver_Week0_Tutorial3_Visualisation.ipynb`
 5. `SOliver_Week0_Final_Tasks2_4.ipynb`
 
-<<<<<<< HEAD
 Supporting reports, written submissions and proposal documents are stored in the `docs/` folder and organised by programme week.
 
 ---
 
 ## Documentation Guide
 
-The `docs/` folder is organised into weekly subfolders:
-
-* `docs/week-0/` contains Week 0 reports and supporting documents related to clinical triage data cleaning, MAP validation, visualisation, vital sign review, time management and digital ED triage model design.
-* `docs/week-1/` contains the Week 1 interim submission and final preliminary proposal.
-* `docs/week-2/` contains the Week 2 updated proposal deliverable with Zotero-generated citations and bibliography.
-=======
-Written submissions, reports, proposals, workflow diagrams and risk documentation are stored in the `docs/` folder.
-
-Recommended document review order:
+The `docs/` folder is organised into weekly subfolders.
+The recommended document review order is
 
 1. `docs/week-0/` — Week 0 reports and written submissions
 2. `docs/week-1/` — Week 1 preliminary proposal documents
 3. `docs/week-2/` — Week 2 updated proposal deliverable
 4. `docs/week-3/` — Week 3 workflow mapping, systems thinking and refined proposal documents
 5. `docs/week-4/` — Week 4 ethics, safety, risk register and AI-harm case study documents
->>>>>>> 34d9051 (Updated README)
 
 ---
 
@@ -162,23 +143,19 @@ This repository currently includes:
 * Matplotlib visualisation report
 * Vital sign review document
 * Digital ED triage model pseudocode document
-<<<<<<< HEAD
-* Week 1 interim and final preliminary proposal documents
-* Week 2 updated proposal deliverable with Zotero-generated citations and bibliography
 
 ---
 
 ## Reference Management
-
-The Week 2 updated proposal uses Zotero-generated citations and bibliography. The reference library was organised to support citation hygiene, reproducibility and clear tracking of the peer-reviewed sources used in the proposal.
-=======
 * Week 1 proposal documents related to AI-assisted ED risk stratification
 * Week 2 updated proposal deliverable with Zotero-generated citations and bibliography
 * Week 3 workflow mapping and systems-thinking deliverables, including AI plug-in points, workflow constraints and stakeholder considerations
 * Week 4 ethics and safety interim submission, including a draft risk register and documented AI-harm case study
 
->>>>>>> 34d9051 (Updated README)
-
+## Zotero Reference libraries
+* Week 2 Reference Library: https://www.zotero.org/groups/6588971/s._oliver-_week_2_reference_library
+* Week 3 Reference Library: https://www.zotero.org/groups/6599337/s._oliver-_week_3_reference_list
+* Week 4 Reference Library: https://www.zotero.org/groups/6599645/s._oliver-_week_4_reference_library
 ---
 
 ## Contributing
