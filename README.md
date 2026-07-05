@@ -21,13 +21,14 @@ The purpose of this repository is to keep my CariSurg programme work organised, 
 It includes:
 
 * Week 0 Jupyter notebooks on emergency department triage data cleaning, validation and visualisation
-
-* Week 0 reports and written reflections
+* Week 0 reports, written reflections and exploratory plots
 * Week 1 proposal documents on AI-assisted early risk stratification in emergency department triage
 * Week 2 updated proposal deliverable with Zotero-generated citations and bibliography
 * Week 3 workflow mapping, systems thinking and refined proposal documentation
 * Week 4 ethics, safety, risk register and AI-harm case study documentation
+* Week 5 initial data exploration, missingness analysis, data-quality summaries and feasibility memo preparation
 * Supporting documentation for project setup and review
+
 
 The main clinical focus is the use of routinely collected triage data to support safer and earlier identification of high-risk emergency department patients. As the portfolio develops, the project also considers workflow fit, stakeholder needs, ethical risks, equity, accountability and safe implementation of AI-assisted triage support.
 
@@ -57,16 +58,27 @@ carisurg-portfolio/
 │   │   └── Week 2 updated proposal deliverable
 │   ├── week-3/
 │   │   └── Week 3 workflow mapping, systems thinking and refined proposal documents
-│   └── week-4/
-│       └── Week 4 interim and final proposals containing ethics, safety, risk register and AI harm case study
+│   ├── week-4/
+│   │   └── Week 4 interim and final proposals containing ethics, safety, risk register and AI harm case study
+│   └── week-5/
+│       └── Week 5 feasibility memo outline, missingness tables and data-quality summaries
 │
 ├── notebooks/
-│   ├── README.md
-│   └── week-0/
-│       └── Week 0 Jupyter notebooks
+│   ├── Week 0 Jupyter notebooks
+│   └── week-5/
+│       └── Week 5 initial data exploration notebook
+│
+├── plots/
+│   ├── week-0/
+│   │   └── Week 0 exploratory plots
+│   ├── week-4/
+│   │   └── Week 4 workflow diagram output
+│   └── week-5/
+│       └── Week 5 data-quality and exploratory visualisations
 │
 └── src/
-    └── README.md
+└── Future reusable scripts or functions
+
 ```
 
 ---
@@ -110,6 +122,21 @@ Recommended notebook review order:
 
 Supporting reports, written submissions and proposal documents are stored in the `docs/` folder and organised by programme week.
 
+Week 5 data exploration work is stored in:
+
+```text
+notebooks/week-5/
+```
+
+Week 5 supporting outputs are stored in:
+
+```text
+docs/week-5/
+plots/week-5/
+```
+
+The Week 5 notebook focuses on initial exploration of the de-identified ED arrivals dataset, including missingness analysis, ESI distribution, demographic review, vital sign exploration and early feasibility assessment.
+
 ---
 
 ## Documentation Guide
@@ -141,8 +168,12 @@ This repository currently includes:
 * Gender column cleaning report
 * MAP cleaning report with clinical justifications
 * Matplotlib visualisation report
-* Vital sign review document
 * Digital ED triage model pseudocode document
+* Week 1 proposal documents related to AI-assisted ED risk stratification
+* Week 2 updated proposal deliverable with Zotero-generated citations and bibliography
+* Week 3 workflow mapping and systems-thinking deliverables, including AI plug-in points, workflow constraints and stakeholder considerations
+* Week 4 ethics and safety documentation, including a risk register and documented AI-harm case study
+* Week 5 initial data exploration notebook, missingness table, data-quality summary and exploratory visualisations
 
 ---
 
