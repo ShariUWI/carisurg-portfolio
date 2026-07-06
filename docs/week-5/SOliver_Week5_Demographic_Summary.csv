@@ -1,0 +1,18 @@
+variable,category,record_count,percent
+race,White or Caucasian,29435,53.4
+race,Black or African American,15963,29.0
+race,Other,9016,16.4
+race,Patient Refused,370,0.7
+race,Asian,175,0.3
+race,Unknown,76,0.1
+race,American Indian or Alaska Native,66,0.1
+race,Native Hawaiian or Other Pacific Islander,20,0.0
+ethnicity,Non-Hispanic,45142,81.9
+ethnicity,Hispanic or Latino,9888,17.9
+ethnicity,Patient Refused,56,0.1
+ethnicity,Unknown,35,0.1
+insurance_status,Medicaid,21427,38.9
+insurance_status,Medicare,17581,31.9
+insurance_status,Commercial,14056,25.5
+insurance_status,Other,1883,3.4
+insurance_status,Self pay,174,0.3

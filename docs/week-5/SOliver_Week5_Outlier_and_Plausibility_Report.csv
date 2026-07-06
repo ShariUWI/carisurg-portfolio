@@ -1,0 +1,8 @@
+,count,min,median,max,iqr_outliers,clinically_impossible,plausible_low,plausible_high
+triage_vital_hr,55121.0,32.0,85.0,221.0,578.0,0.0,20.0,250.0
+triage_vital_sbp,55121.0,53.0,132.0,266.0,1028.0,0.0,50.0,300.0
+triage_vital_dbp,55121.0,27.0,79.0,189.0,726.0,0.0,20.0,200.0
+triage_vital_rr,55121.0,8.0,18.0,66.0,2366.0,4.0,4.0,60.0
+triage_vital_o2,55121.0,62.0,98.0,99.0,1505.0,0.0,50.0,100.0
+triage_vital_temp,55121.0,91.5,98.0,106.0,3554.0,0.0,86.0,110.0
+triage_glucose,55121.0,16.0,107.0,1066.0,5673.0,25.0,20.0,800.0
