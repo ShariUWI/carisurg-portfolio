@@ -26,7 +26,7 @@ It includes:
 * Week 2 updated proposal deliverable with Zotero-generated citations and bibliography
 * Week 3 workflow mapping, systems thinking and refined proposal documentation
 * Week 4 ethics, safety, risk register and AI-harm case study documentation
-* Week 5 initial data exploration, missingness analysis, data-quality summaries and feasibility memo preparation
+* Week 5 final data exploration, data-quality visualisation dashboard, feasibility memo and top-10 clinically justified feature shortlist
 * Supporting documentation for project setup and review
 
 
@@ -61,12 +61,12 @@ carisurg-portfolio/
 │   ├── week-4/
 │   │   └── Week 4 interim and final proposals containing ethics, safety, risk register and AI harm case study
 │   └── week-5/
-│       └── Week 5 feasibility memo outline, missingness tables and data-quality summaries
+│    └── Week 5 final feasibility memo, memo outline, summary CSVs and top-10 feature shortlist
 │
 ├── notebooks/
 │   ├── Week 0 Jupyter notebooks
 │   └── week-5/
-│       └── Week 5 initial data exploration notebook
+│       └── Week 5 final exploration and data profiling notebooks
 │
 ├── plots/
 │   ├── week-0/
@@ -102,7 +102,7 @@ For Windows PowerShell, use:
 pip install -r requirements.txt
 ```
 
-If you are using Google Colab, you can upload the notebook directly from the `notebooks/week-0/` folder and run the cells there.
+If you are using Google Colab, you can upload notebooks directly from the relevant weekly notebook folder, such as `notebooks/week-0/` or `notebooks/week-5/`, and run the cells there.
 
 ---
 
@@ -135,7 +135,9 @@ docs/week-5/
 plots/week-5/
 ```
 
-The Week 5 notebook focuses on initial exploration of the de-identified ED arrivals dataset, including missingness analysis, ESI distribution, demographic review, vital sign exploration and early feasibility assessment.
+The Week 5 final notebook focuses on exploration of the programme-provided ED triage dataset, `yaleemmlc_admissionprediction_triage.csv`, including missingness analysis, ESI target review, demographic and fairness-sensitive review, vital sign exploration, clinical plausibility checks, chief complaint review, feature-signal review and early feasibility assessment.
+
+The raw dataset is not included in this repository for data governance reasons. The notebook is written to load the dataset locally when available.
 
 ---
 
@@ -149,15 +151,33 @@ The recommended document review order is
 3. `docs/week-2/` — Week 2 updated proposal deliverable
 4. `docs/week-3/` — Week 3 workflow mapping, systems thinking and refined proposal documents
 5. `docs/week-4/` — Week 4 ethics, safety, risk register and AI-harm case study documents
+6. `docs/week-5/` — Week 5 final feasibility memo, memo outline, data-quality summaries and top-10 feature shortlist
 
 ---
 
 ## Data Notes
 
+
 The `data/` folder is reserved for programme-approved datasets.
 
-The work presented uses programme-provided emergency department triage data. Sensitive, private or programme-controlled data is not uploaded to this repository unless permission is given. If a dataset is excluded from the repository, the notebook or documentation clearly explains where the data came from and how it was used.
+The Week 5 work uses the programme-provided emergency department triage dataset titled `yaleemmlc_admissionprediction_triage.csv`. This raw dataset is not uploaded to the repository for data governance reasons.
 
+Only derived outputs are included, such as summary CSVs, plots, feasibility documentation and notebook outputs. The Week 5 notebook is written to load the raw dataset locally when available.
+
+Sensitive, private or programme-controlled data should not be committed to this repository unless explicit permission is given.
+
+
+## Week 5 Final Deliverables
+
+The Week 5 final submission includes:
+
+* Final exploration and data profiling notebook
+* Data-quality visualisation dashboard
+* 3-page clinical feasibility memo
+* Top-10 feature shortlist with clinical reasoning
+* Derived summary CSVs and supporting plots
+
+The raw dataset `yaleemmlc_admissionprediction_triage.csv` is not included in the repository for data governance reasons.
 ---
 
 ## Main Outputs
@@ -173,7 +193,7 @@ This repository currently includes:
 * Week 2 updated proposal deliverable with Zotero-generated citations and bibliography
 * Week 3 workflow mapping and systems-thinking deliverables, including AI plug-in points, workflow constraints and stakeholder considerations
 * Week 4 ethics and safety documentation, including a risk register and documented AI-harm case study
-* Week 5 initial data exploration notebook, missingness table, data-quality summary and exploratory visualisations
+* Week 5 final exploration notebook, data-quality visualisation dashboard, 3-page clinical feasibility memo, top-10 feature shortlist and derived summary outputs
 
 ---
 
@@ -182,6 +202,7 @@ This repository currently includes:
 * Week 2 updated proposal deliverable with Zotero-generated citations and bibliography
 * Week 3 workflow mapping and systems-thinking deliverables, including AI plug-in points, workflow constraints and stakeholder considerations
 * Week 4 ethics and safety interim submission, including a draft risk register and documented AI-harm case study
+* Week 5 data exploration and feasibility memo outputs based on programme-provided ED triage data
 
 ## Zotero Reference libraries
 * Week 2 Reference Library: https://www.zotero.org/groups/6588971/s._oliver-_week_2_reference_library
