@@ -27,6 +27,7 @@ It includes:
 * Week 3 workflow mapping, systems thinking and refined proposal documentation
 * Week 4 ethics, safety, risk register and AI-harm case study documentation
 * Week 5 final data exploration, data-quality visualisation dashboard, feasibility memo and top-10 clinically justified feature shortlist
+* Week 6 interim baseline modelling, initial model evaluation, random baseline comparison and draft confusion matrix artefact
 * Supporting documentation for project setup and review
 
 
@@ -62,11 +63,16 @@ carisurg-portfolio/
 │   │   └── Week 4 interim and final proposals containing ethics, safety, risk register and AI harm case study
 │   └── week-5/
 │    └── Week 5 final feasibility memo, memo outline, summary CSVs and top-10 feature shortlist
+    └── week-6/
+│       └── Week 6 interim model evaluation outputs and supporting documentation
+│
 │
 ├── notebooks/
 │   ├── Week 0 Jupyter notebooks
 │   └── week-5/
 │       └── Week 5 final exploration and data profiling notebooks
+│   └── week-6/
+│       └── Week 6 interim baseline modelling notebook
 │
 ├── plots/
 │   ├── week-0/
@@ -75,7 +81,8 @@ carisurg-portfolio/
 │   │   └── Week 4 workflow diagram output
 │   └── week-5/
 │       └── Week 5 data-quality and exploratory visualisations
-│
+│   └── week-6/
+│       └── Week 6 interim confusion matrix and model evaluation plots
 └── src/
 └── Future reusable scripts or functions
 
@@ -102,7 +109,7 @@ For Windows PowerShell, use:
 pip install -r requirements.txt
 ```
 
-If you are using Google Colab, you can upload notebooks directly from the relevant weekly notebook folder, such as `notebooks/week-0/` or `notebooks/week-5/`, and run the cells there.
+If you are using Google Colab, you can upload notebooks directly from the relevant weekly notebook folder, such as `notebooks/week-0/`, `notebooks/week-5/` or `notebooks/week-6/`, and run the cells there.
 
 ---
 
@@ -139,7 +146,14 @@ The Week 5 final notebook focuses on exploration of the programme-provided ED tr
 
 The raw dataset is not included in this repository for data governance reasons. The notebook is written to load the dataset locally when available.
 
+Week 6 interim baseline modelling work is stored in:
+
+```text
+notebooks/week-6/
 ---
+docs/week-6/
+plots/week-6/
+
 
 ## Documentation Guide
 
@@ -152,6 +166,7 @@ The recommended document review order is
 4. `docs/week-3/` — Week 3 workflow mapping, systems thinking and refined proposal documents
 5. `docs/week-4/` — Week 4 ethics, safety, risk register and AI-harm case study documents
 6. `docs/week-5/` — Week 5 final feasibility memo, memo outline, data-quality summaries and top-10 feature shortlist
+7. `docs/week-6/` — Week 6 interim model evaluation outputs, draft confusion matrix artefact and supporting documentation
 
 ---
 
@@ -160,9 +175,9 @@ The recommended document review order is
 
 The `data/` folder is reserved for programme-approved datasets.
 
-The Week 5 work uses the programme-provided emergency department triage dataset titled `yaleemmlc_admissionprediction_triage.csv`. This raw dataset is not uploaded to the repository for data governance reasons.
+The Week 5 and Week 6 work use the programme-provided emergency department triage dataset titled `yaleemmlc_admissionprediction_triage.csv`. This raw dataset is not uploaded to the repository for data governance reasons.
 
-Only derived outputs are included, such as summary CSVs, plots, feasibility documentation and notebook outputs. The Week 5 notebook is written to load the raw dataset locally when available.
+Only derived outputs are included, such as summary CSVs, plots, feasibility documentation and notebook outputs. The Week 5 and Week 6 notebooks are written to load the raw dataset locally when available.
 
 Sensitive, private or programme-controlled data should not be committed to this repository unless explicit permission is given.
 
@@ -176,6 +191,18 @@ The Week 5 final submission includes:
 * 3-page clinical feasibility memo
 * Top-10 feature shortlist with clinical reasoning
 * Derived summary CSVs and supporting plots
+
+The raw dataset `yaleemmlc_admissionprediction_triage.csv` is not included in the repository for data governance reasons.
+
+## Week 6 Interim Deliverables
+
+The Week 6 interim submission includes:
+
+* Interim baseline modelling notebook
+* Logistic regression baseline model
+* Stratified random baseline comparison
+* Initial evaluation metrics including accuracy, precision, recall and F1-score
+* Draft logistic regression confusion matrix artefact
 
 The raw dataset `yaleemmlc_admissionprediction_triage.csv` is not included in the repository for data governance reasons.
 ---
@@ -194,6 +221,7 @@ This repository currently includes:
 * Week 3 workflow mapping and systems-thinking deliverables, including AI plug-in points, workflow constraints and stakeholder considerations
 * Week 4 ethics and safety documentation, including a risk register and documented AI-harm case study
 * Week 5 final exploration notebook, data-quality visualisation dashboard, 3-page clinical feasibility memo, top-10 feature shortlist and derived summary outputs
+* Week 6 interim baseline modelling notebook, initial evaluation metrics, stratified random baseline comparison and draft confusion matrix artefact
 
 ---
 
@@ -203,6 +231,7 @@ This repository currently includes:
 * Week 3 workflow mapping and systems-thinking deliverables, including AI plug-in points, workflow constraints and stakeholder considerations
 * Week 4 ethics and safety interim submission, including a draft risk register and documented AI-harm case study
 * Week 5 data exploration and feasibility memo outputs based on programme-provided ED triage data
+* Week 6 baseline modelling and evaluation outputs based on programme-provided ED triage data
 
 ## Zotero Reference libraries
 * Week 2 Reference Library: https://www.zotero.org/groups/6588971/s._oliver-_week_2_reference_library
