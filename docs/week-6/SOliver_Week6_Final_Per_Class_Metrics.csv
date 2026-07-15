@@ -1,0 +1,25 @@
+Model,Class or Average,precision,recall,f1-score,support
+Stratified Random Baseline,1,0.0,0.0,0.0,16.0
+Stratified Random Baseline,2,0.334,0.327,0.331,3585.0
+Stratified Random Baseline,3,0.491,0.498,0.494,5402.0
+Stratified Random Baseline,4,0.147,0.148,0.147,1779.0
+Stratified Random Baseline,5,0.049,0.045,0.047,243.0
+Stratified Random Baseline,accuracy,0.375,0.375,0.375,0.375
+Stratified Random Baseline,macro avg,0.204,0.204,0.204,11025.0
+Stratified Random Baseline,weighted avg,0.374,0.375,0.375,11025.0
+Logistic Regression,1,0.017,0.625,0.033,16.0
+Logistic Regression,2,0.674,0.619,0.646,3585.0
+Logistic Regression,3,0.762,0.541,0.633,5402.0
+Logistic Regression,4,0.519,0.65,0.577,1779.0
+Logistic Regression,5,0.153,0.675,0.249,243.0
+Logistic Regression,accuracy,0.587,0.587,0.587,0.587
+Logistic Regression,macro avg,0.425,0.622,0.427,11025.0
+Logistic Regression,weighted avg,0.68,0.587,0.619,11025.0
+Decision Tree,1,0.014,0.562,0.027,16.0
+Decision Tree,2,0.497,0.482,0.489,3585.0
+Decision Tree,3,0.847,0.153,0.26,5402.0
+Decision Tree,4,0.0,0.0,0.0,1779.0
+Decision Tree,5,0.037,0.905,0.072,243.0
+Decision Tree,accuracy,0.253,0.253,0.253,0.253
+Decision Tree,macro avg,0.279,0.421,0.169,11025.0
+Decision Tree,weighted avg,0.577,0.253,0.288,11025.0
