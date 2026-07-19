@@ -5,7 +5,7 @@
 ## 60-Second Summary
 
 | Question                                | Answer                                                                                                                                                                       |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **What is this project?**               | My CariSurg MedTech Pathways portfolio documenting clinical AI, emergency department triage data work, proposal development and project documentation.                       |
 | **Who is it for?**                      | CariSurg tutors, clinical reviewers and members of the Clinical AI & Innovation Unit who need to quickly review my work.                                                     |
 | **How do I install and run it?**        | Clone the repository, install the requirements and open the notebooks in Jupyter Lab or Google Colab. See the Installation and Usage sections below for copy-paste commands. |
@@ -20,31 +20,31 @@ The purpose of this repository is to keep my CariSurg programme work organised, 
 
 It includes:
 
-* Week 0 Jupyter notebooks on emergency department triage data cleaning, validation and visualisation
-* Week 0 reports, written reflections and exploratory plots
-* Week 1 proposal documents on AI-assisted early risk stratification in emergency department triage
-* Week 2 updated proposal deliverable with Zotero-generated citations and bibliography
-* Week 3 workflow mapping, systems thinking and refined proposal documentation
-* Week 4 ethics, safety, risk register and AI-harm case study documentation
-* Week 5 final data exploration, data-quality visualisation dashboard, feasibility memo and top-10 clinically justified feature shortlist
-* Week 6 interim baseline modelling, initial model evaluation, random baseline comparison and draft confusion matrix artefact
-* Supporting documentation for project setup and review
+- Week 0 Jupyter notebooks on emergency department triage data cleaning, validation and visualisation
+- Week 0 reports, written reflections and exploratory plots
+- Week 1 proposal documents on AI-assisted early risk stratification in emergency department triage
+- Week 2 updated proposal deliverable with Zotero-generated citations and bibliography
+- Week 3 workflow mapping, systems thinking and refined proposal documentation
+- Week 4 ethics, safety, risk register and AI-harm case study documentation
+- Week 5 final data exploration, data-quality visualisation dashboard, feasibility memo and top-10 clinically justified feature shortlist
+- Week 6 baseline modelling notebook (logistic regression and decision tree), initial model evaluation, stratified random baseline comparison and confusion matrix artefacts, with a focus on ESI Level 1 recall as the primary clinical metric
+- Week 7 interim complex model benchmarking: a Random Forest classifier trained on the Week 6 feature set and train/test split, evaluated against the Week 6 baselines on a six-axis quantitative benchmark (accuracy, precision, recall, F1, training time, inference time) plus a qualitative interpretability axis, with a draft benchmark table
+- Supporting documentation for project setup and review
 
-
-The main clinical focus is the use of routinely collected triage data to support safer and earlier identification of high-risk emergency department patients. As the portfolio develops, the project also considers workflow fit, stakeholder needs, ethical risks, equity, accountability and safe implementation of AI-assisted triage support.
-
+The main clinical focus is the use of routinely collected triage data to support safer and earlier identification of high-risk emergency department patients. As the portfolio develops, the project also considers workflow fit, stakeholder needs, ethical risks, equity, accountability, compute/deployment cost and safe implementation of AI-assisted triage support.
 
 ---
 
 ## Repository Structure
 
-```text
+```
 carisurg-portfolio/
 │
 ├── README.md
 ├── LICENSE
 ├── .gitignore
 ├── requirements.txt
+├── setup_notes.md
 │
 ├── data/
 │   └── README.md
@@ -61,31 +61,39 @@ carisurg-portfolio/
 │   │   └── Week 3 workflow mapping, systems thinking and refined proposal documents
 │   ├── week-4/
 │   │   └── Week 4 interim and final proposals containing ethics, safety, risk register and AI harm case study
-│   └── week-5/
-│    └── Week 5 final feasibility memo, memo outline, summary CSVs and top-10 feature shortlist
-    └── week-6/
-│       └── Week 6 interim model evaluation outputs and supporting documentation
-│
+│   ├── week-5/
+│   │   └── Week 5 final feasibility memo, memo outline, summary CSVs and top-10 feature shortlist
+│   ├── week-6/
+│   │   └── Week 6 baseline model evaluation outputs and supporting documentation
+│   └── week-7/
+│       └── Week 7 interim draft benchmark table and supporting documentation
 │
 ├── notebooks/
 │   ├── Week 0 Jupyter notebooks
-│   └── week-5/
-│       └── Week 5 final exploration and data profiling notebooks
-│   └── week-6/
-│       └── Week 6 interim baseline modelling notebook
+│   ├── week-5/
+│   │   └── Week 5 final exploration and data profiling notebooks
+│   ├── week-6/
+│   │   └── Week 6 baseline modelling notebook (logistic regression, decision tree)
+│   └── week-7/
+│       └── Week 7 interim complex model benchmarking notebook (Random Forest)
 │
 ├── plots/
 │   ├── week-0/
 │   │   └── Week 0 exploratory plots
 │   ├── week-4/
 │   │   └── Week 4 workflow diagram output
-│   └── week-5/
-│       └── Week 5 data-quality and exploratory visualisations
-│   └── week-6/
-│       └── Week 6 interim confusion matrix and model evaluation plots
+│   ├── week-5/
+│   │   └── Week 5 data-quality and exploratory visualisations
+│   ├── week-6/
+│   │   └── Week 6 confusion matrix and model evaluation plots
+│   └── week-7/
+│       └── Week 7 complex model confusion matrix, feature importance and comparison plots
+│
+├── screenshots/
+│   └── Supporting screenshots for documentation and programme submissions
+│
 └── src/
-└── Future reusable scripts or functions
-
+    └── Future reusable scripts or functions
 ```
 
 ---
@@ -94,7 +102,7 @@ carisurg-portfolio/
 
 To review or run the notebooks locally, clone this repository and install the required Python packages.
 
-```bash
+```
 git clone https://github.com/ShariUWI/carisurg-portfolio.git
 cd carisurg-portfolio
 python -m venv .venv
@@ -104,18 +112,18 @@ pip install -r requirements.txt
 
 For Windows PowerShell, use:
 
-```bash
+```
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
-If you are using Google Colab, you can upload notebooks directly from the relevant weekly notebook folder, such as `notebooks/week-0/`, `notebooks/week-5/` or `notebooks/week-6/`, and run the cells there.
+If you are using Google Colab, you can upload notebooks directly from the relevant weekly notebook folder, such as `notebooks/week-0/`, `notebooks/week-5/`, `notebooks/week-6/` or `notebooks/week-7/`, and run the cells there.
 
 ---
 
 ## Usage
 
-```bash
+```
 jupyter lab notebooks/week-0/
 ```
 
@@ -131,34 +139,41 @@ Supporting reports, written submissions and proposal documents are stored in the
 
 Week 5 data exploration work is stored in:
 
-```text
-notebooks/week-5/
 ```
-
-Week 5 supporting outputs are stored in:
-
-```text
+notebooks/week-5/
 docs/week-5/
 plots/week-5/
 ```
 
 The Week 5 final notebook focuses on exploration of the programme-provided ED triage dataset, `yaleemmlc_admissionprediction_triage.csv`, including missingness analysis, ESI target review, demographic and fairness-sensitive review, vital sign exploration, clinical plausibility checks, chief complaint review, feature-signal review and early feasibility assessment.
 
-The raw dataset is not included in this repository for data governance reasons. The notebook is written to load the dataset locally when available.
+Week 6 baseline modelling work is stored in:
 
-Week 6 interim baseline modelling work is stored in:
-
-```text
+```
 notebooks/week-6/
----
 docs/week-6/
 plots/week-6/
+```
 
+The Week 6 notebook builds and evaluates two interpretable baseline classifiers — logistic regression and a bounded-depth (`max_depth=5`) decision tree — against a stratified random baseline, using accuracy, per-class precision/recall/F1, macro F1, weighted F1 and confusion matrices. ESI Level 1 recall is treated as the primary clinical metric throughout, since it represents the model's ability to correctly flag the most critically ill patients.
+
+Week 7 interim complex model benchmarking work is stored in:
+
+```
+notebooks/week-7/
+docs/week-7/
+plots/week-7/
+```
+
+The Week 7 notebook reuses the exact Week 6 feature set, leakage checks and train/test split, then trains a Random Forest classifier as the "more complex model" candidate for Phase 3. It benchmarks the Random Forest against both Week 6 baselines on six quantitative axes (accuracy, precision, recall, F1, training time, inference time) plus a qualitative interpretability axis, and produces the draft benchmark table used to inform the Week 7 cost-benefit memo.
+
+The raw dataset is not included in this repository for data governance reasons. All notebooks are written to load the dataset locally when available.
+
+---
 
 ## Documentation Guide
 
-The `docs/` folder is organised into weekly subfolders.
-The recommended document review order is
+The `docs/` folder is organised into weekly subfolders. The recommended document review order is:
 
 1. `docs/week-0/` — Week 0 reports and written submissions
 2. `docs/week-1/` — Week 1 preliminary proposal documents
@@ -166,21 +181,22 @@ The recommended document review order is
 4. `docs/week-3/` — Week 3 workflow mapping, systems thinking and refined proposal documents
 5. `docs/week-4/` — Week 4 ethics, safety, risk register and AI-harm case study documents
 6. `docs/week-5/` — Week 5 final feasibility memo, memo outline, data-quality summaries and top-10 feature shortlist
-7. `docs/week-6/` — Week 6 interim model evaluation outputs, draft confusion matrix artefact and supporting documentation
+7. `docs/week-6/` — Week 6 baseline model evaluation outputs and supporting documentation
+8. `docs/week-7/` — Week 7 interim draft benchmark table, per-class metrics and compute-cost reflection
 
 ---
 
 ## Data Notes
 
-
 The `data/` folder is reserved for programme-approved datasets.
 
-The Week 5 and Week 6 work use the programme-provided emergency department triage dataset titled `yaleemmlc_admissionprediction_triage.csv`. This raw dataset is not uploaded to the repository for data governance reasons.
+The Week 5, Week 6 and Week 7 work all use the programme-provided emergency department triage dataset titled `yaleemmlc_admissionprediction_triage.csv`. This raw dataset is not uploaded to the repository for data governance reasons.
 
-Only derived outputs are included, such as summary CSVs, plots, feasibility documentation and notebook outputs. The Week 5 and Week 6 notebooks are written to load the raw dataset locally when available.
+Only derived outputs are included, such as summary CSVs, plots, feasibility documentation and notebook outputs. The Week 5, Week 6 and Week 7 notebooks are written to load the raw dataset locally when available.
 
 Sensitive, private or programme-controlled data should not be committed to this repository unless explicit permission is given.
 
+---
 
 ## Week 5 Final Deliverables
 
@@ -194,17 +210,34 @@ The Week 5 final submission includes:
 
 The raw dataset `yaleemmlc_admissionprediction_triage.csv` is not included in the repository for data governance reasons.
 
-## Week 6 Interim Deliverables
+---
 
-The Week 6 interim submission includes:
+## Week 6 Deliverables
 
-* Interim baseline modelling notebook
-* Logistic regression baseline model
+The Week 6 final submission includes:
+
+* Baseline modelling notebook (logistic regression and decision tree)
 * Stratified random baseline comparison
-* Initial evaluation metrics including accuracy, precision, recall and F1-score
-* Draft logistic regression confusion matrix artefact
+* Evaluation metrics including accuracy, precision, recall and F1-score, by class, macro and weighted
+* Logistic regression and decision tree confusion matrix artefacts
+* ESI Level 1 failure-mode analysis, established as the primary clinical safety metric
 
 The raw dataset `yaleemmlc_admissionprediction_triage.csv` is not included in the repository for data governance reasons.
+
+---
+
+## Week 7 Interim Deliverables
+
+The Week 7 interim submission includes:
+
+* Interim complex model benchmarking notebook, implementing a Random Forest classifier on the Week 6 feature set and train/test split
+* Six-axis quantitative benchmark against both Week 6 baselines: accuracy, precision, recall, F1, training time and inference time
+* Qualitative interpretability assessment across all three models (logistic regression, decision tree, Random Forest), including Random Forest global feature importances
+* Draft benchmark table, per-class metrics and a preliminary compute-cost reflection
+* Random Forest confusion matrix and ESI Level 1 failure-mode breakdown
+
+The raw dataset `yaleemmlc_admissionprediction_triage.csv` is not included in the repository for data governance reasons.
+
 ---
 
 ## Main Outputs
@@ -221,22 +254,27 @@ This repository currently includes:
 * Week 3 workflow mapping and systems-thinking deliverables, including AI plug-in points, workflow constraints and stakeholder considerations
 * Week 4 ethics and safety documentation, including a risk register and documented AI-harm case study
 * Week 5 final exploration notebook, data-quality visualisation dashboard, 3-page clinical feasibility memo, top-10 feature shortlist and derived summary outputs
-* Week 6 interim baseline modelling notebook, initial evaluation metrics, stratified random baseline comparison and draft confusion matrix artefact
+* Week 6 baseline modelling notebook, evaluation metrics, stratified random baseline comparison and confusion matrix artefacts
+* Week 7 interim complex model benchmarking notebook, six-axis benchmark table, interpretability assessment and preliminary compute-cost reflection
 
 ---
 
 ## Reference Management
+
 * Week 1 proposal documents related to AI-assisted ED risk stratification
 * Week 2 updated proposal deliverable with Zotero-generated citations and bibliography
 * Week 3 workflow mapping and systems-thinking deliverables, including AI plug-in points, workflow constraints and stakeholder considerations
-* Week 4 ethics and safety interim submission, including a draft risk register and documented AI-harm case study
+* Week 4 ethics and safety submission, including a risk register and documented AI-harm case study
 * Week 5 data exploration and feasibility memo outputs based on programme-provided ED triage data
 * Week 6 baseline modelling and evaluation outputs based on programme-provided ED triage data
+* Week 7 complex model benchmarking and cost-benefit evaluation outputs based on programme-provided ED triage data
 
-## Zotero Reference libraries
+### Zotero Reference Libraries
+
 * Week 2 Reference Library: https://www.zotero.org/groups/6588971/s._oliver-_week_2_reference_library
 * Week 3 Reference Library: https://www.zotero.org/groups/6599337/s._oliver-_week_3_reference_list
 * Week 4 Reference Library: https://www.zotero.org/groups/6599645/s._oliver-_week_4_reference_library
+
 ---
 
 ## Contributing
@@ -259,6 +297,10 @@ Before merging any changes into this repository:
 AI tools were used to support drafting, refactoring, documentation and code review. All AI-generated content was reviewed, edited and verified before being committed.
 
 No real patient data, private credentials or sensitive information was pasted into AI tools.
+
+Unless otherwise stated, machine learning experiments from Week 6 onward use:
+- Random Seed = **42**
+- 80/20 stratified train-test split
 
 ---
 
