@@ -20,7 +20,6 @@ env/
 *.pem
 
 # Data files
-*.csv
 *.xlsx
 *.xls
 *.db
