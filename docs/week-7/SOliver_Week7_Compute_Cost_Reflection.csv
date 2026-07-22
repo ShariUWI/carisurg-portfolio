@@ -1,4 +1,6 @@
 Model,Assumed Daily Patients,Est. Daily Inference Time (s),Assumed Retrains / Year,Est. Annual Retraining Time (s)
-Logistic Regression (Week 6),150,1.113,12,273.6
-Decision Tree (Week 6),150,1.036,12,24.667
-Random Forest (Week 7),150,15.016,12,244.34
+Logistic Regression (Week 6),150,1.739,12,279.851
+Decision Tree (Week 6),150,2.834,12,33.668
+Random Forest (Week 7),150,13.651,12,238.302
+XGBoost (Week 7),150,1.553,12,320.356
+LightGBM (Week 7),150,1.502,12,116.83
