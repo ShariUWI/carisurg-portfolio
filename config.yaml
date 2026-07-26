@@ -1,0 +1,39 @@
+# config.yaml
+# Single source of truth for training the pinned Phase 3 model.
+# Run with: python scripts/train.py --config config.yaml
+#
+# Model decision: logistic regression, per the Week 7 cost-benefit memo
+# (docs/week-7-cost-benefit.md) and decision journal
+# (docs/decisions/2026-week-7-model-choice.md). Selected for its
+# materially higher ESI Level 1 recall versus every complex-model
+# candidate tested (Random Forest, XGBoost, LightGBM).
+
+random_seed: 42
+
+data:
+  path: "yaleemmlc_admissionprediction_triage.csv"
+  target: "esi"
+  index_col: 0
+
+engineered_features:
+  enabled: true
+  hr_col: "triage_vital_hr"
+  sbp_col: "triage_vital_sbp"
+  dbp_col: "triage_vital_dbp"
+
+split:
+  test_size: 0.20
+  stratify: true
+  random_state: 42
+
+model:
+  type: "logistic_regression"
+  scale_numeric: true
+  hyperparameters:
+    max_iter: 2000
+    class_weight: "balanced"
+    random_state: 42
+
+output:
+  model_path: "models/final_model.joblib"
+  metrics_path: "docs/final_model_metrics.json"

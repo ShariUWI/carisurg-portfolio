@@ -40,3 +40,5 @@ Thumbs.db
 # Temporary files
 tmp/
 temp/
+yaleemmlc_admissionprediction_triage.csv
+models/

@@ -5,3 +5,7 @@ seaborn
 jupyter
 notebook
 openpyxl
+joblib==1.5.3
+pytest==9.1.1
+PyYAML==6.0.3
+scikit-learn==1.9.0
