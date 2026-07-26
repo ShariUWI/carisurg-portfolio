@@ -28,7 +28,7 @@ It includes:
 - Week 4 ethics, safety, risk register and AI-harm case study documentation
 - Week 5 final data exploration, data-quality visualisation dashboard, feasibility memo and top-10 clinically justified feature shortlist
 - Week 6 baseline modelling notebook (logistic regression and decision tree), initial model evaluation, stratified random baseline comparison and confusion matrix artefacts, with a focus on ESI Level 1 recall as the primary clinical metric
-- Week 7 interim complex model benchmarking: a Random Forest classifier trained on the Week 6 feature set and train/test split, evaluated against the Week 6 baselines on a six-axis quantitative benchmark (accuracy, precision, recall, F1, training time, inference time) plus a qualitative interpretability axis, with a draft benchmark table
+- Week 7 final complex model benchmarking: Random Forest, XGBoost and LightGBM classifiers trained on the Week 6 feature set and train/test split, evaluated against the Week 6 baselines on a six-axis quantitative benchmark (accuracy, precision, recall, F1, training time, inference time) plus a qualitative interpretability axis, with a final benchmark table, SHAP/feature-importance-based interpretability, a documented model-selection decision journal and a cost–benefit memo recommending LightGBM for deployment
 - Supporting documentation for project setup and review
 
 The main clinical focus is the use of routinely collected triage data to support safer and earlier identification of high-risk emergency department patients. As the portfolio develops, the project also considers workflow fit, stakeholder needs, ethical risks, equity, accountability, compute/deployment cost and safe implementation of AI-assisted triage support.
@@ -65,8 +65,10 @@ carisurg-portfolio/
 │   │   └── Week 5 final feasibility memo, memo outline, summary CSVs and top-10 feature shortlist
 │   ├── week-6/
 │   │   └── Week 6 baseline model evaluation outputs and supporting documentation
-│   └── week-7/
-│       └── Week 7 interim draft benchmark table and supporting documentation
+│   ├── week-7/
+│   │   └── Week 7 final benchmark table, per-class metrics, ESI Level 1 failure summary, compute-cost reflection and cost–benefit memo
+│   └── decisions/
+│       └── Week 7 model-selection decision journal
 │
 ├── notebooks/
 │   ├── Week 0 Jupyter notebooks
@@ -75,7 +77,7 @@ carisurg-portfolio/
 │   ├── week-6/
 │   │   └── Week 6 baseline modelling notebook (logistic regression, decision tree)
 │   └── week-7/
-│       └── Week 7 interim complex model benchmarking notebook (Random Forest)
+│       └── Week 7 final complex model benchmarking notebook (Random Forest, XGBoost, LightGBM)
 │
 ├── plots/
 │   ├── week-0/
@@ -87,7 +89,7 @@ carisurg-portfolio/
 │   ├── week-6/
 │   │   └── Week 6 confusion matrix and model evaluation plots
 │   └── week-7/
-│       └── Week 7 complex model confusion matrix, feature importance and comparison plots
+│       └── Week 7 final confusion matrices (Random Forest, XGBoost, LightGBM), feature importance plots and final model comparison chart
 │
 ├── screenshots/
 │   └── Supporting screenshots for documentation and programme submissions
@@ -157,15 +159,16 @@ plots/week-6/
 
 The Week 6 notebook builds and evaluates two interpretable baseline classifiers — logistic regression and a bounded-depth (`max_depth=5`) decision tree — against a stratified random baseline, using accuracy, per-class precision/recall/F1, macro F1, weighted F1 and confusion matrices. ESI Level 1 recall is treated as the primary clinical metric throughout, since it represents the model's ability to correctly flag the most critically ill patients.
 
-Week 7 interim complex model benchmarking work is stored in:
+Week 7 final complex model benchmarking work is stored in:
 
 ```
 notebooks/week-7/
 docs/week-7/
+docs/decisions/
 plots/week-7/
 ```
 
-The Week 7 notebook reuses the exact Week 6 feature set, leakage checks and train/test split, then trains a Random Forest classifier as the "more complex model" candidate for Phase 3. It benchmarks the Random Forest against both Week 6 baselines on six quantitative axes (accuracy, precision, recall, F1, training time, inference time) plus a qualitative interpretability axis, and produces the draft benchmark table used to inform the Week 7 cost-benefit memo.
+The Week 7 notebook reuses the exact Week 6 feature set, leakage checks and train/test split, then trains and benchmarks three complex model candidates for Phase 3 — Random Forest, XGBoost and LightGBM — against both Week 6 baselines. It evaluates all five models on six quantitative axes (accuracy, precision, recall, F1, training time, inference time) plus a qualitative interpretability axis, and produces the final benchmark table, per-class metrics, ESI Level 1 failure-mode breakdown and compute-cost reflection used to inform the Week 7 cost–benefit memo. Based on this benchmarking, **LightGBM was selected as the preferred model**, per the documented rationale in `docs/decisions/SOliver_Week7_Model_Choice.md`, on the strength of its overall accuracy, Macro F1, training/inference speed and interpretability via feature importance and SHAP values.
 
 The raw dataset is not included in this repository for data governance reasons. All notebooks are written to load the dataset locally when available.
 
@@ -173,7 +176,7 @@ The raw dataset is not included in this repository for data governance reasons. 
 
 ## Documentation Guide
 
-The `docs/` folder is organised into weekly subfolders. The recommended document review order is:
+The `docs/` folder is organised into weekly subfolders, plus a `decisions/` folder for cross-cutting decision records. The recommended document review order is:
 
 1. `docs/week-0/` — Week 0 reports and written submissions
 2. `docs/week-1/` — Week 1 preliminary proposal documents
@@ -182,7 +185,8 @@ The `docs/` folder is organised into weekly subfolders. The recommended document
 5. `docs/week-4/` — Week 4 ethics, safety, risk register and AI-harm case study documents
 6. `docs/week-5/` — Week 5 final feasibility memo, memo outline, data-quality summaries and top-10 feature shortlist
 7. `docs/week-6/` — Week 6 baseline model evaluation outputs and supporting documentation
-8. `docs/week-7/` — Week 7 interim draft benchmark table, per-class metrics and compute-cost reflection
+8. `docs/week-7/` — Week 7 final benchmark table, per-class metrics, compute-cost reflection and cost–benefit memo recommending LightGBM
+9. `docs/decisions/` — Model-selection decision journal documenting the Week 7 model choice rationale
 
 ---
 
@@ -226,15 +230,16 @@ The raw dataset `yaleemmlc_admissionprediction_triage.csv` is not included in th
 
 ---
 
-## Week 7 Interim Deliverables
+## Week 7 Final Deliverables
 
-The Week 7 interim submission includes:
+The Week 7 final submission includes:
 
-* Interim complex model benchmarking notebook, implementing a Random Forest classifier on the Week 6 feature set and train/test split
-* Six-axis quantitative benchmark against both Week 6 baselines: accuracy, precision, recall, F1, training time and inference time
-* Qualitative interpretability assessment across all three models (logistic regression, decision tree, Random Forest), including Random Forest global feature importances
-* Draft benchmark table, per-class metrics and a preliminary compute-cost reflection
-* Random Forest confusion matrix and ESI Level 1 failure-mode breakdown
+* Final complex model benchmarking notebook, training and evaluating Random Forest, XGBoost and LightGBM classifiers on the Week 6 feature set and train/test split
+* Final six-axis quantitative benchmark against both Week 6 baselines: accuracy, precision, recall, F1, training time and inference time
+* Qualitative interpretability assessment across all five models, including feature importance and SHAP-based explanations for the complex models
+* Final benchmark table, per-class metrics, ESI Level 1 failure-mode breakdown and compute-cost reflection
+* Confusion matrices for Random Forest, XGBoost and LightGBM, plus feature importance plots for Random Forest and the selected best-performing complex model
+* Documented decision journal and cost–benefit memo recommending LightGBM as the preferred model for future development and potential deployment
 
 The raw dataset `yaleemmlc_admissionprediction_triage.csv` is not included in the repository for data governance reasons.
 
@@ -255,7 +260,7 @@ This repository currently includes:
 * Week 4 ethics and safety documentation, including a risk register and documented AI-harm case study
 * Week 5 final exploration notebook, data-quality visualisation dashboard, 3-page clinical feasibility memo, top-10 feature shortlist and derived summary outputs
 * Week 6 baseline modelling notebook, evaluation metrics, stratified random baseline comparison and confusion matrix artefacts
-* Week 7 interim complex model benchmarking notebook, six-axis benchmark table, interpretability assessment and preliminary compute-cost reflection
+* Week 7 final complex model benchmarking notebook (Random Forest, XGBoost, LightGBM), final benchmark table, interpretability assessment, decision journal and cost–benefit memo recommending LightGBM
 
 ---
 
@@ -267,7 +272,7 @@ This repository currently includes:
 * Week 4 ethics and safety submission, including a risk register and documented AI-harm case study
 * Week 5 data exploration and feasibility memo outputs based on programme-provided ED triage data
 * Week 6 baseline modelling and evaluation outputs based on programme-provided ED triage data
-* Week 7 complex model benchmarking and cost-benefit evaluation outputs based on programme-provided ED triage data
+* Week 7 complex model benchmarking, final evaluation and cost–benefit analysis based on programme-provided ED triage data
 
 ### Zotero Reference Libraries
 
@@ -299,6 +304,7 @@ AI tools were used to support drafting, refactoring, documentation and code revi
 No real patient data, private credentials or sensitive information was pasted into AI tools.
 
 Unless otherwise stated, machine learning experiments from Week 6 onward use:
+
 - Random Seed = **42**
 - 80/20 stratified train-test split
 
