@@ -142,6 +142,7 @@ pip install -r requirements.txt
 
 If you are using Google Colab, you can upload notebooks directly from the relevant weekly notebook folder, such as `notebooks/week-0/`, `notebooks/week-5/`, `notebooks/week-6/` or `notebooks/week-7/`, and run the cells there.
 
+
 If you are using **GitHub Codespaces**, open a codespace on this repository from the green **Code** button, then run the same `pip install -r requirements.txt` command in the built-in terminal. `requirements.txt` pins an exact version for every dependency (added in Week 8 for reproducibility — no bare package names, e.g. `scikit-learn==1.5.2` rather than `scikit-learn`).
 
 ---
