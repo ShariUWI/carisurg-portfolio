@@ -1,8 +1,8 @@
-# Model-Selection Results Table (Draft — Week 8 Interim)
+# Model-Selection Results Table (Final — Week 8)
 
-**Purpose:** the audit trail Martina Griffith asked for — every model trained across Weeks 6–7, not just the final one. Full reasoning behind the winning model is in [`docs/decisions/SOliver_Week7_Model_Choice.md`](decisions/SOliver_Week7_Model_Choice.md) and [`docs/week-7/SOliver_Week7_Cost_Benefit_Memo.md`](week-7/SOliver_Week7_Cost_Benefit_Memo.md).
+**Purpose:** the audit trail Martina Griffith asked for — every model trained across Weeks 6–8, not just the final one. Full reasoning behind the winning model is in [`docs/decisions/SOliver_Week7_Model_Choice.md`](decisions/SOliver_Week7_Model_Choice.md) and [`docs/week-7/SOliver_Week7_Cost_Benefit_Memo.md`](week-7/SOliver_Week7_Cost_Benefit_Memo.md).
 
-**Winner: 🏆 Logistic Regression** — pinned as the Phase 3 model in `config.yaml`, on ESI Level 1 recall grounds (see reasoning below the table).
+**Winner: 🏆 Logistic Regression** — pinned as the Phase 3 model in [`config.yaml`](../config.yaml), on ESI Level 1 recall grounds (see reasoning below the table). One model, one set of hyperparameters, no model-shopping code remains in `scripts/train.py`.
 
 ---
 
@@ -53,8 +53,8 @@ One sentence: **logistic regression correctly identifies far more true ESI Level
 
 Full three-arguments-for / three-arguments-against reasoning, risks and the explicit statement of what this choice does *not* solve are in `docs/week-7/SOliver_Week7_Cost_Benefit_Memo.md`. The condensed decision record is in `docs/decisions/SOliver_Week7_Model_Choice.md`.
 
-## Notes for Final Submission
+## Notes
 
-- This table currently reports macro-averaged Precision/Recall/F1 for the six-axis columns and separates out ESI 1/2 for the critical-class view, per Week 8 rubric requirements.
-- Engineered features (`shock_index`, `pulse_pressure`) have now been re-run against the full local dataset (see the Week 8 section above) — a small, consistent improvement, strongest on recall. The Weeks 6–7 comparison table above still describes the un-engineered feature set on the earlier, smaller dataset; a full re-run of every model on the complete dataset with engineered features is a reasonable next step, but was not required for this pinned-model handover.
-- XGBoost's strong ESI 2 performance and near-competitive overall metrics keep it flagged as a near-term follow-up candidate (see memo Section 6) — not fully closed off in favour of logistic regression.
+- This table reports macro-averaged Precision/Recall/F1 for the six-axis columns and separates out ESI 1/2 for the critical-class view, per the Week 7 tutor feedback on checking the most critical classes specifically.
+- Engineered features (`shock_index`, `pulse_pressure`) have been re-run against the full local dataset (see the Week 8 section above) — a small, consistent improvement, strongest on recall. The Weeks 6–7 comparison table above still describes the un-engineered feature set on an earlier, smaller copy of the dataset; a full re-run of every model on the complete dataset with engineered features would be a reasonable next step beyond this handover, not a gap in it.
+- XGBoost's strong ESI 2 performance and near-competitive overall metrics keep it flagged as a near-term follow-up candidate (see memo Section 6) — not fully closed off in favour of logistic regression, but not the pinned production model either.

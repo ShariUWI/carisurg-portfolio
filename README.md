@@ -8,7 +8,7 @@
 | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **What is this project?**               | My CariSurg MedTech Pathways portfolio documenting clinical AI, emergency department triage data work, proposal development and project documentation.                       |
 | **Who is it for?**                      | CariSurg tutors, clinical reviewers and members of the Clinical AI & Innovation Unit who need to quickly review my work.                                                     |
-| **How do I install and run it?**        | Clone the repository, install the requirements and open the notebooks in Jupyter Lab or Google Colab. See the Installation and Usage sections below for copy-paste commands. |
+| **How do I install and run it?**        | Clone the repository, install the requirements, and run `python scripts/train.py --config config.yaml` to train the pinned model. See Installation and Usage below. |
 | **Where does the data come from?**      | The work uses programme-provided emergency department triage data. Sensitive or programme-controlled datasets are not uploaded unless permission is given.                   |
 | **Who built it and how can I connect?** | Built by Shari Oliver for the CariSurg MedTech Pathways Programme. LinkedIn: [Shari Oliver](https://www.linkedin.com/in/shari-oliver-87906b1ba/).                            |
 
@@ -28,7 +28,8 @@ It includes:
 - Week 4 ethics, safety, risk register and AI-harm case study documentation
 - Week 5 final data exploration, data-quality visualisation dashboard, feasibility memo and top-10 clinically justified feature shortlist
 - Week 6 baseline modelling notebook (logistic regression and decision tree), initial model evaluation, stratified random baseline comparison and confusion matrix artefacts, with a focus on ESI Level 1 recall as the primary clinical metric
-- Week 7 final complex model benchmarking: Random Forest, XGBoost and LightGBM classifiers trained on the Week 6 feature set and train/test split, evaluated against the Week 6 baselines on a six-axis quantitative benchmark (accuracy, precision, recall, F1, training time, inference time) plus a qualitative interpretability axis, with a final benchmark table, SHAP/feature-importance-based interpretability, a documented model-selection decision journal and a cost–benefit memo recommending LightGBM for deployment
+- Week 7 final complex model benchmarking: Random Forest, XGBoost and LightGBM classifiers trained on the Week 6 feature set and train/test split, evaluated against the Week 6 baselines on a six-axis quantitative benchmark (accuracy, precision, recall, F1, training time, inference time) plus a qualitative interpretability axis, with a final benchmark table and a documented model-selection decision journal. **Logistic regression was retained as the Phase 3 model** on ESI Level 1 recall grounds, with XGBoost — the strongest of the three complex-model candidates — flagged as a near-term follow-up.
+- Week 8 reproducibility and handover: the pinned logistic regression model refactored out of notebooks into a modular `src/` package driven by a single `config.yaml`, a `scripts/train.py` entry point, pytest sanity checks, a model-selection audit table covering every model trained across Weeks 6–7, and a handover document
 - Supporting documentation for project setup and review
 
 The main clinical focus is the use of routinely collected triage data to support safer and earlier identification of high-risk emergency department patients. As the portfolio develops, the project also considers workflow fit, stakeholder needs, ethical risks, equity, accountability, compute/deployment cost and safe implementation of AI-assisted triage support.
@@ -45,12 +46,31 @@ carisurg-portfolio/
 ├── .gitignore
 ├── requirements.txt
 ├── setup_notes.md
+├── config.yaml               ← Week 8: single source of truth for the pinned model
+├── pytest.ini
+│
+├── src/                       ← Week 8: modular, importable package (no notebook logic)
+│   ├── __init__.py
+│   ├── data.py                 (dataset loading, feature selection, leakage check)
+│   ├── features.py             (engineered features: shock_index, pulse_pressure)
+│   ├── model.py                (preprocessing, training, evaluation)
+│   └── utils.py                (seeding, config loading)
+│
+├── scripts/                   ← Week 8: entry point
+│   └── train.py                (reads config.yaml, trains and saves the pinned model)
+│
+├── tests/                     ← Week 8: pytest sanity checks
+│   ├── test_data.py             (schema checks)
+│   └── test_model.py            (end-to-end training smoke test)
+│
+├── models/                    ← Week 8: trained model artefacts (git-ignored, not committed)
 │
 ├── data/
 │   └── README.md
 │
 ├── docs/
 │   ├── README.md
+│   ├── model-selection.md    ← Week 8: audit trail, every model trained Weeks 6–8
 │   ├── week-0/
 │   │   └── Week 0 reports, written submissions and supporting documents
 │   ├── week-1/
@@ -66,11 +86,15 @@ carisurg-portfolio/
 │   ├── week-6/
 │   │   └── Week 6 baseline model evaluation outputs and supporting documentation
 │   ├── week-7/
-│   │   └── Week 7 final benchmark table, per-class metrics, ESI Level 1 failure summary, compute-cost reflection and cost–benefit memo
+│   │   ├── Week 7 final benchmark table, per-class metrics, ESI Level 1 failure summary, compute-cost reflection and cost–benefit memo
+│   │   └── drafts/
+│   │       └── Superseded draft versions, kept for audit-trail purposes (see docs/model-selection.md for what's current)
+│   ├── week-8/
+│   │   └── Week 8 handover document (HANDOVER.md)
 │   └── decisions/
 │       └── Week 7 model-selection decision journal
 │
-├── notebooks/
+├── notebooks/                 ← unchanged by the Week 8 refactor; kept as the exploratory record
 │   ├── Week 0 Jupyter notebooks
 │   ├── week-5/
 │   │   └── Week 5 final exploration and data profiling notebooks
@@ -91,11 +115,8 @@ carisurg-portfolio/
 │   └── week-7/
 │       └── Week 7 final confusion matrices (Random Forest, XGBoost, LightGBM), feature importance plots and final model comparison chart
 │
-├── screenshots/
-│   └── Supporting screenshots for documentation and programme submissions
-│
-└── src/
-    └── Future reusable scripts or functions
+└── screenshots/
+    └── Supporting screenshots for documentation and programme submissions
 ```
 
 ---
@@ -121,9 +142,25 @@ pip install -r requirements.txt
 
 If you are using Google Colab, you can upload notebooks directly from the relevant weekly notebook folder, such as `notebooks/week-0/`, `notebooks/week-5/`, `notebooks/week-6/` or `notebooks/week-7/`, and run the cells there.
 
+If you are using **GitHub Codespaces**, open a codespace on this repository from the green **Code** button, then run the same `pip install -r requirements.txt` command in the built-in terminal. `requirements.txt` pins an exact version for every dependency (added in Week 8 for reproducibility — no bare package names, e.g. `scikit-learn==1.5.2` rather than `scikit-learn`).
+
 ---
 
 ## Usage
+
+### Running the Pinned Model (Week 8 — Recommended Starting Point)
+
+The fastest way to see this project work end-to-end no longer requires opening a notebook:
+
+```
+pip install -r requirements.txt
+pytest tests/ -v          # confirm the environment is set up correctly (10 tests, synthetic data, no dataset required)
+python scripts/train.py --config config.yaml   # trains the pinned logistic regression model
+```
+
+`scripts/train.py` reads every setting — dataset path, target column, engineered-feature toggles, train/test split, model hyperparameters, output paths — from `config.yaml`. Changing the model or its hyperparameters means editing `config.yaml`, not the code. The raw dataset (`yaleemmlc_admissionprediction_triage.csv`) is not included in this repository; place it at the path specified in `config.yaml` before running.
+
+### Exploratory Notebooks
 
 ```
 jupyter lab notebooks/week-0/
@@ -168,7 +205,7 @@ docs/decisions/
 plots/week-7/
 ```
 
-The Week 7 notebook reuses the exact Week 6 feature set, leakage checks and train/test split, then trains and benchmarks three complex model candidates for Phase 3 — Random Forest, XGBoost and LightGBM — against both Week 6 baselines. It evaluates all five models on six quantitative axes (accuracy, precision, recall, F1, training time, inference time) plus a qualitative interpretability axis, and produces the final benchmark table, per-class metrics, ESI Level 1 failure-mode breakdown and compute-cost reflection used to inform the Week 7 cost–benefit memo. Based on this benchmarking, **LightGBM was selected as the preferred model**, per the documented rationale in `docs/decisions/SOliver_Week7_Model_Choice.md`, on the strength of its overall accuracy, Macro F1, training/inference speed and interpretability via feature importance and SHAP values.
+The Week 7 notebook reuses the exact Week 6 feature set, leakage checks and train/test split, then trains and benchmarks three complex model candidates for Phase 3 — Random Forest, XGBoost and LightGBM — against both Week 6 baselines. It evaluates all five models on six quantitative axes (accuracy, precision, recall, F1, training time, inference time) plus a qualitative interpretability axis, and produces the final benchmark table, per-class metrics, ESI Level 1 failure-mode breakdown and compute-cost reflection used to inform the Week 7 cost–benefit memo. **Logistic regression was retained as the Phase 3 model**, on the strength of its materially higher ESI Level 1 recall versus every complex-model candidate tested; **XGBoost** — the best-performing of the three complex candidates — was flagged as a near-term follow-up rather than adopted outright. Full reasoning is documented in `docs/decisions/SOliver_Week7_Model_Choice.md` and `docs/week-7/SOliver_Week7_Cost_Benefit_Memo.md`.
 
 The raw dataset is not included in this repository for data governance reasons. All notebooks are written to load the dataset locally when available.
 
@@ -185,8 +222,10 @@ The `docs/` folder is organised into weekly subfolders, plus a `decisions/` fold
 5. `docs/week-4/` — Week 4 ethics, safety, risk register and AI-harm case study documents
 6. `docs/week-5/` — Week 5 final feasibility memo, memo outline, data-quality summaries and top-10 feature shortlist
 7. `docs/week-6/` — Week 6 baseline model evaluation outputs and supporting documentation
-8. `docs/week-7/` — Week 7 final benchmark table, per-class metrics, compute-cost reflection and cost–benefit memo recommending LightGBM
+8. `docs/week-7/` — Week 7 final benchmark table, per-class metrics, compute-cost reflection and cost–benefit memo (`docs/week-7/drafts/` holds superseded draft versions, kept for audit-trail purposes rather than deleted)
 9. `docs/decisions/` — Model-selection decision journal documenting the Week 7 model choice rationale
+10. `docs/model-selection.md` — Week 8 audit trail: every model trained across Weeks 6–8, with the winner marked and linked back to the Week 7 decision journal
+11. `docs/week-8/` — Week 8 handover document (`HANDOVER.md`)
 
 ---
 
@@ -194,9 +233,9 @@ The `docs/` folder is organised into weekly subfolders, plus a `decisions/` fold
 
 The `data/` folder is reserved for programme-approved datasets.
 
-The Week 5, Week 6 and Week 7 work all use the programme-provided emergency department triage dataset titled `yaleemmlc_admissionprediction_triage.csv`. This raw dataset is not uploaded to the repository for data governance reasons.
+The Week 5 through Week 8 work all uses the programme-provided emergency department triage dataset titled `yaleemmlc_admissionprediction_triage.csv`. This raw dataset is not uploaded to the repository for data governance reasons; its expected local path is set in `config.yaml` (`data.path`), not hard-coded into any script.
 
-Only derived outputs are included, such as summary CSVs, plots, feasibility documentation and notebook outputs. The Week 5, Week 6 and Week 7 notebooks are written to load the raw dataset locally when available.
+Only derived outputs are included, such as summary CSVs, plots, feasibility documentation, notebook outputs and trained-model metrics (`docs/final_model_metrics.json`). Trained model artefacts (`models/`) are git-ignored and never committed.
 
 Sensitive, private or programme-controlled data should not be committed to this repository unless explicit permission is given.
 
@@ -236,10 +275,29 @@ The Week 7 final submission includes:
 
 * Final complex model benchmarking notebook, training and evaluating Random Forest, XGBoost and LightGBM classifiers on the Week 6 feature set and train/test split
 * Final six-axis quantitative benchmark against both Week 6 baselines: accuracy, precision, recall, F1, training time and inference time
-* Qualitative interpretability assessment across all five models, including feature importance and SHAP-based explanations for the complex models
+* Qualitative interpretability assessment across all five models, including feature importance for the complex models
 * Final benchmark table, per-class metrics, ESI Level 1 failure-mode breakdown and compute-cost reflection
-* Confusion matrices for Random Forest, XGBoost and LightGBM, plus feature importance plots for Random Forest and the selected best-performing complex model
-* Documented decision journal and cost–benefit memo recommending LightGBM as the preferred model for future development and potential deployment
+* Confusion matrices for Random Forest, XGBoost and LightGBM
+* Documented decision journal and cost–benefit memo: **logistic regression retained** for Phase 3 on ESI Level 1 recall grounds, with **XGBoost** flagged as the strongest complex-model candidate and a near-term follow-up
+
+The raw dataset `yaleemmlc_admissionprediction_triage.csv` is not included in the repository for data governance reasons.
+
+---
+
+## Week 8 Final Deliverables
+
+The Week 8 final submission includes:
+
+* Modular `src/` package refactored from the Week 6/7 notebooks: `data.py`, `features.py`, `model.py`, `utils.py` — all importable with no top-level side effects, no reliance on notebook globals, confirmed via `python -c "import src.data; import src.model"`
+* `config.yaml` pinning the final Phase 3 model (logistic regression) and its exact hyperparameters — one model, one set of hyperparameters, no model-shopping code in `scripts/train.py`
+* `scripts/train.py`, a single entry point that reads every setting (paths, seed, hyperparameters) from config and trains, evaluates and saves the pinned model — verified working end-to-end against the full 55,121-row dataset (accuracy 0.591, macro recall 0.635, training time under 20 seconds)
+* Two engineered features (`shock_index`, `pulse_pressure`) added to `src/features.py` in response to Week 7 tutor feedback, with a measured, positive impact on macro recall (+0.013) documented in `docs/model-selection.md`
+* `tests/` — 10 passing pytest sanity checks (schema validation + end-to-end training smoke test on ~50 rows of synthetic data), runnable with a single `pytest tests/ -v`
+* `requirements.txt` with pinned library versions for every dependency
+* `docs/model-selection.md` — the final audit trail covering every model trained across Weeks 6–8, winner marked, linked to the Week 7 decision journal
+* `docs/week-8/HANDOVER.md` — the completed handover document: project summary, final model decision with reasoning, exact run command, data governance status and three known limitations
+* Original Week 6/7 exploratory notebooks preserved unchanged in `notebooks/`
+* Dataset confirmed excluded from version control via `.gitignore`
 
 The raw dataset `yaleemmlc_admissionprediction_triage.csv` is not included in the repository for data governance reasons.
 
@@ -260,7 +318,8 @@ This repository currently includes:
 * Week 4 ethics and safety documentation, including a risk register and documented AI-harm case study
 * Week 5 final exploration notebook, data-quality visualisation dashboard, 3-page clinical feasibility memo, top-10 feature shortlist and derived summary outputs
 * Week 6 baseline modelling notebook, evaluation metrics, stratified random baseline comparison and confusion matrix artefacts
-* Week 7 final complex model benchmarking notebook (Random Forest, XGBoost, LightGBM), final benchmark table, interpretability assessment, decision journal and cost–benefit memo recommending LightGBM
+* Week 7 final complex model benchmarking notebook (Random Forest, XGBoost, LightGBM), final benchmark table, interpretability assessment, decision journal and cost–benefit memo recommending logistic regression, with XGBoost flagged as a follow-up candidate
+* Week 8 modular `src/` package, config-driven training entry point, pytest sanity checks, model-selection audit table and handover document
 
 ---
 
@@ -273,6 +332,7 @@ This repository currently includes:
 * Week 5 data exploration and feasibility memo outputs based on programme-provided ED triage data
 * Week 6 baseline modelling and evaluation outputs based on programme-provided ED triage data
 * Week 7 complex model benchmarking, final evaluation and cost–benefit analysis based on programme-provided ED triage data
+* Week 8 reproducibility refactor and model-selection audit trail based on the Week 6–7 modelling outputs
 
 ### Zotero Reference Libraries
 

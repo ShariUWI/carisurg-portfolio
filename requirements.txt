@@ -1,10 +1,10 @@
-pandas
-numpy
-matplotlib
-seaborn
-jupyter
-notebook
-openpyxl
+jupyter==1.1.1
+matplotlib==3.11.0
+notebook==7.5.7
+numpy==2.4.6
+openpyxl==3.1.5
+pandas==3.0.3
+seaborn==0.13.2
 joblib==1.5.3
 pytest==9.1.1
 PyYAML==6.0.3
